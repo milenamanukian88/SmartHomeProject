@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Home Dashboard</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fb;
+    color: #1e293b;
+}
+header {
+    background: #172554;
+    color: white;
+    padding: 30px 8%;
+}
+header h1 { margin: 0 0 8px; }
+header p { margin: 0; color: #cbd5e1; }
+main { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.card, .device {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px #0000000a;
+}
+.card h3 { color: #64748b; font-size: 15px; }
+.card strong { font-size: 38px; }
+.section-title { margin-top: 40px; }
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.device h3 { margin-top: 0; }
+.status {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.online { background: #dcfce7; color: #166534; }
+.offline { background: #fee2e2; color: #991b1b; }
+.metric { margin-top: 15px; color: #475569; }
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover { background: #1d4ed8; }
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+#message { color: #64748b; font-size: 13px; }
+@media (max-width: 650px) {
+    .stats, .devices { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🏠 Smart Home Dashboard</h1>
+<p>Real-time device monitoring system</p>
+</header>
+
+<main>
+<div class="stats">
+    <div class="card">
+        <h3>Total Devices</h3>
+        <strong id="total">--</strong>
+    </div>
+    <div class="card">
+        <h3>🟢 Online Devices</h3>
+        <strong id="online">--</strong>
+    </div>
+    <div class="card">
+        <h3>🔴 Offline Devices</h3>
+        <strong id="offline">--</strong>
+    </div>
+</div>
+
+<div class="toolbar section-title">
+    <h2>Connected Devices</h2>
+    <button onclick="loadDevices()">Refresh</button>
+</div>
+
+<p id="message">Loading devices...</p>
+<div id="devices" class="devices"></div>
+</main>
+
+<script>
+async function loadDevices() {
+    const message = document.getElementById("message");
+
+    try {
+        const response = await fetch("/api/devices");
+        if (!response.ok) throw new Error("API request failed");
+
+        const data = await response.json();
+
+        document.getElementById("total").textContent = data.totalDevices;
+        document.getElementById("online").textContent = data.onlineDevices;
+        document.getElementById("offline").textContent = data.offlineDevices;
+
+        const container = document.getElementById("devices");
+        container.replaceChildren();
+
+        for (const device of data.devices) {
+            const card = document.createElement("div");
+            card.className = "device";
+
+            const title = document.createElement("h3");
+            title.textContent = device.name;
+
+            const status = document.createElement("span");
+            status.className = "status " +
+                (device.status === "Online" ? "online" : "offline");
+            status.textContent = device.status;
+
+            const temperature = document.createElement("div");
+            temperature.className = "metric";
+            temperature.textContent = "🌡 Temperature: " +
+                (device.temperature ?? "N/A");
+
+            const uptime = document.createElement("div");
+            uptime.className = "metric";
+            uptime.textContent = "⏱ Uptime: " +
+                (device.uptime ?? "N/A") + " seconds";
+
+            card.append(title, status, temperature, uptime);
+            container.appendChild(card);
+        }
+
+        message.textContent = "Last updated: " +
+            new Date().toLocaleTimeString();
+    } catch (error) {
+        message.textContent = "Unable to load dashboard data.";
+        console.error(error);
+    }
+}
+
+loadDevices();
+setInterval(loadDevices, 5000);
+</script>
+
+</body>
+</html>
