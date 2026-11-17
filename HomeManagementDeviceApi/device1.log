@@ -1,0 +1,79 @@
+Using launch settings from /Users/milenamanukian/Desktop/HomeManagementDeviceApi/Properties/launchSettings.json...
+Building...
+warn: Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer[8]
+      The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: https://localhost:1234
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:1235
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Device1
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/milenamanukian/Desktop/HomeManagementDeviceApi
+fail: Microsoft.AspNetCore.Server.Kestrel[0]
+      Unexpected exception in TimingPipeFlusher.FlushAsync.
+      System.IO.IOException: The encryption operation failed, see inner exception.
+       ---> System.ComponentModel.Win32Exception (5): Input/output error
+         --- End of inner exception stack trace ---
+         at System.Net.Security.SslStream.WriteSingleChunk[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.Net.Security.SslStream.WriteAsyncInternal[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsync(CancellationToken cancellationToken)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.PipeWriterHelpers.ConcurrentPipeWriter.FlushAsync(CancellationToken cancellationToken)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.PipeWriterHelpers.TimingPipeFlusher.FlushAsync(MinDataRate minRate, Int64 count, IHttpOutputAborter outputAborter, CancellationToken cancellationToken)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http2.Http2FrameWriter.WriteGoAwayAsync(Int32 lastStreamId, Http2ErrorCode errorCode)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http2.Http2Connection.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+         at System.Threading.ThreadPoolWorkQueue.Dispatch()
+         at System.Threading.PortableThreadPool.WorkerThread.WorkerDoWork(PortableThreadPool threadPoolInstance)
+         at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+         at System.Threading.Thread.StartCallback(Thread* pThread)
+      --- End of stack trace from previous location ---
+         at System.Net.Security.SslStream.WriteAsyncInternal[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.PipeWriterHelpers.ConcurrentPipeWriter.FlushAsyncAwaited(ValueTask`1 flushTask, CancellationToken cancellationToken)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.PipeWriterHelpers.TimingPipeFlusher.TimeFlushAsyncAwaited(ValueTask`1 pipeFlushTask, MinDataRate minRate, IHttpOutputAborter outputAborter, CancellationToken cancellationToken)
+fail: Microsoft.AspNetCore.Server.Kestrel[0]
+      Unhandled exception while processing 0HNQ4JA0LPJV6.
+      System.IO.IOException: The encryption operation failed, see inner exception.
+       ---> System.ComponentModel.Win32Exception (5): Input/output error
+         --- End of inner exception stack trace ---
+         at System.Net.Security.SslStream.WriteSingleChunk[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.Net.Security.SslStream.WriteAsyncInternal[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.CompleteAsync(Exception exception)
+         at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+         at System.IO.Pipelines.StreamPipeWriter.CompleteAsync(Exception exception)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.DuplexPipeStreamAdapter`1.DisposeAsync()
+         at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+         at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+         at System.Threading.Tasks.Task`1.TrySetResult(TResult result)
+         at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+         at System.Threading.Tasks.Task`1.TrySetResult(TResult result)
+         at System.Threading.Tasks.UnwrapPromise`1.TrySetFromTask(Task task, Boolean lookForOce)
+         at System.Threading.Tasks.UnwrapPromise`1.Invoke(Task completingTask)
+         at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+         at System.Threading.Tasks.Task`1.TrySetResult(TResult result)
+         at System.Threading.ThreadPoolWorkQueue.Dispatch()
+         at System.Threading.PortableThreadPool.WorkerThread.WorkerDoWork(PortableThreadPool threadPoolInstance)
+         at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+         at System.Threading.Thread.StartCallback(Thread* pThread)
+      --- End of stack trace from previous location ---
+         at System.Net.Security.SslStream.WriteAsyncInternal[TIOAdapter](ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+         at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+         at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+         at System.IO.Pipelines.StreamPipeWriter.CompleteAsync(Exception exception)
+         at System.IO.Pipelines.StreamPipeWriter.CompleteAsync(Exception exception)
+         at System.Runtime.CompilerServices.AsyncHelpers.TransparentAwait(ValueTask task)
+         at System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder.get_Task()
+         at System.IO.Pipelines.StreamPipeWriter.CompleteAsync(Exception exception)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.DuplexPipeStreamAdapter`1.DisposeAsync()
+         at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+         at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+         at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelConnection`1.ExecuteAsync()
